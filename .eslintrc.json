@@ -10,7 +10,7 @@
         // "prettier",
         // "prettier/prettier",
         // "prettier/react",
-        // "prettier/@typescript-eslint"
+        // "prettier/@typescript-eslint",
         "plugin:prettier/recommended" // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
     ],
     "parser": "@typescript-eslint/parser",
@@ -43,12 +43,28 @@
             }
         ],
         "import/prefer-default-export": "off",
-        "max-len": ["warn", { "code": 80 }],
+        "max-len": [
+            "warn",
+            {
+                "code": 80
+            }
+        ],
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-shadow": [
+            "error"
+        ],
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"],
-        "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "react/jsx-filename-extension": [
+            "warn",
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
         "react/prop-types": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn"
@@ -56,6 +72,10 @@
     "settings": {
         "import/resolver": {
             "typescript": {}
+        },
+        "react": {
+            "pragma": "React",
+            "version": "detect"
         }
     }
 }

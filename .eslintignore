@@ -1,2 +1,15 @@
+# Dependency directories
+node_modules
+
+# Optional npm cache directory
+.npm
+
+/dist
+/docs
+/scripts
+mock
+
+*.m.scss.d.ts
+
 *.css
 *.svg
