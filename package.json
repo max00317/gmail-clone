@@ -17,6 +17,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "1-install-eslint": "yarn add eslint --dev && npx eslint --init",
+    "2-import-resolver-ts": "yarn add eslint-import-resolver-typescript --dev",
+    "3-install-prettier": "yarn add prettier --dev --exact",
+    "4-eslint-prettier-config": "yarn add eslint-config-prettier eslint-plugin-prettier --dev",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
