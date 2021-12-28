@@ -12,16 +12,33 @@ code {
     monospace;
 }
 
-.trigger, .settings {
-  padding: 0 24px;
-  font-size: 18px;
-  line-height: 64px;
+.folders {
+  font-weight:500;
+}
+.folders > .anticon {
+  font-size: 16px;
+}
+
+.trigger, .settings, .actions {
   cursor: pointer;
   transition: color 0.3s;
 }
+.trigger, .settings {
+  font-size: 20px;
+  padding: 0 24px;
+  line-height: 64px;
+}
 
-.trigger:hover {
+.trigger:hover, .settings:hover {
   color: #1890ff;
+}
+
+.actions button {
+  color: #666;
+}
+.actions button:hover {
+  color: #000;
+  background-color: rgba(172, 172, 172, 0.2);
 }
 
 .logo {

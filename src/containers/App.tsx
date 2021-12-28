@@ -15,8 +15,10 @@ import {
   SettingOutlined,
 } from '@ant-design/icons'
 import EmailList from '../components/EmailList'
+import Message from '../components/Message'
 
-import { fetch, getFolders } from '../utils/api'
+import { fetch } from '../utils/api'
+// import { _getFolders } from '../utils/_DATA'
 
 const { Header, Footer, Sider, Content } = Layout
 
@@ -26,6 +28,7 @@ function App(): React.ReactElement {
   const [collapsed, setCollapsed] = useState(false)
   const [settings, setSettings] = useState(true)
   // const [folderData, fetchFolderData] = useFolders()
+  const [messageId, setMessageId] = useState<string | null>(null)
 
   const fetchData = async () => {
     // ES6 then/catch
@@ -39,7 +42,8 @@ function App(): React.ReactElement {
     try {
       const response = await fetch('/folders')
       const json = await response.json()
-      setFolders(json)
+      // console.log(`json`, json)
+      setFolders(Object.values(json))
     } catch (err) {
       console.log(`err`, err)
     } finally {
@@ -68,7 +72,13 @@ function App(): React.ReactElement {
 
   useEffect(() => {
     fetchData()
-    // console.log(`getFolders()`, getFolders())
+
+    // async function gF() {
+    //   const response = await _getFolders()
+    //   console.log(`response`, response)
+    //   console.log(`_getFolders()`, await _getFolders())
+    // }
+    // gF()
   }, [])
 
   const Logo: React.FC = () => {
@@ -100,22 +110,22 @@ function App(): React.ReactElement {
           prefix={<SearchOutlined />}
           className="search-input"
         />
-        <SettingOutlined
-          style={{ fontSize: '20px' }}
-          className="settings"
-          onClick={handleSettings}
-        />
+        <SettingOutlined className="settings" onClick={handleSettings} />
       </Header>
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
           <Menu
             // theme="dark"
             mode="inline"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={['Inbox']}
           >
             {folders.map((folder) => {
               return (
-                <Menu.Item key={folder} icon={folderIcons[folder]}>
+                <Menu.Item
+                  key={folder}
+                  icon={folderIcons[folder]}
+                  className="folders"
+                >
                   {folder}
                 </Menu.Item>
               )
@@ -124,7 +134,8 @@ function App(): React.ReactElement {
         </Sider>
         <Layout>
           <Content>
-            <EmailList />
+            <EmailList setMessageId={setMessageId} />
+            <Message messageId={messageId} />
           </Content>
           <Sider
             trigger={null}

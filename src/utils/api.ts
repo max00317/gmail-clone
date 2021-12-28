@@ -1,11 +1,11 @@
-import { folders } from './data/folders.js'
+import * as data from './_DATA'
 // import * as users from './users'
 
-export function getFolders(): Promise<string[]> {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folders }), 1000)
-  })
-}
+// export function getFolders(): Promise<string[]> {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => res({ ...folders }), 1000)
+//   })
+// }
 
 interface fetchResponse {
   ok: boolean
@@ -28,21 +28,36 @@ export const fetch = async (
     // }
     case '/folders': {
       // const folder = await users.login(JSON.parse(config.body))
-      // const folder = await getFolders()
-      // return {
-      //   ok: true,
-      //   status: 200,
-      //   json: async () => folders,
-      // }
+      // const foldersObj = await _getFolders()
+      // console.log(`foldersObj`, foldersObj)
+      // console.log(`Object.values(foldersObj)`, Object.values(foldersObj))
+      return {
+        ok: true,
+        status: 200,
+        // json: async () => folders,
+        json: data._getFolders,
+      }
+      // return new Promise((res, rej) => {
+      //   setTimeout(
+      //     () =>
+      //       res({
+      //         ok: true,
+      //         status: 200,
+      //         json: async () => folders,
+      //       }),
+      //     500
+      //   )
+      // })
       return new Promise((res, rej) => {
         setTimeout(
           () =>
             res({
               ok: true,
               status: 200,
-              json: async () => folders,
+              json: async () => data.folders,
+              // json: async () => Object.values(_getFolders()),
             }),
-          500
+          3000
         )
       })
     }
@@ -74,5 +89,5 @@ export const useFolders = async () => {
   const result = await fetch('/folders')
   const folders1 = await result.json()
   return folders1
-  console.log(`folders:`, folders)
+  console.log(`folders:`, folders1)
 }

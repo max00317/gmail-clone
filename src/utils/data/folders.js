@@ -1,4 +1,4 @@
-export const folders = [
+;[
   'Inbox',
   'Trash',
   'Work Emails',
