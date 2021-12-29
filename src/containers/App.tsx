@@ -148,7 +148,7 @@ function App(): React.ReactElement {
           </Sider>
         </Layout>
       </Layout>
-      <Footer>Footer</Footer>
+      {/* <Footer>Footer</Footer> */}
     </Layout>
   )
 }

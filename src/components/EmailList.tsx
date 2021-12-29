@@ -7,10 +7,16 @@ import {
   ClockCircleFilled,
 } from '@ant-design/icons'
 
+import type * as type from '../types/Message'
+
 const EmailList: React.FC<any> = ({ setMessageId }) => {
   // const handleAction: React.MouseEventHandler<HTMLButtonElement> = (e) => {}
-  const handleAction = (rec: Record<string, unknown>, action: string): void => {
-    console.log(action, rec)
+  const handleAction = (
+    rec: type.IMessage | type.IFolderMessage,
+    action: string
+  ): void => {
+    console.log(`rec`, rec)
+    console.log(action, rec.key)
   }
 
   const columns = [
@@ -28,7 +34,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
     {
       title: 'Action',
       key: 'action',
-      render: (record: Record<string, unknown>) => (
+      render: (record: type.IMessage) => (
         <Space size={0} className="actions">
           <Tooltip title="Archive">
             <Button

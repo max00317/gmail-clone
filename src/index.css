@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+#root {
+  border-bottom: 1px solid #f0f0f0;
+  /* border-bottom: 1px solid red; */
+}
+
+.ant-menu-inline {
+  height: 100%;
+}
 .folders {
   font-weight:500;
 }
@@ -19,6 +27,9 @@ code {
   font-size: 16px;
 }
 
+.trigger {
+  margin-top: 10px;
+}
 .trigger, .settings, .actions {
   cursor: pointer;
   transition: color 0.3s;
@@ -33,12 +44,19 @@ code {
   color: #1890ff;
 }
 
-.actions button {
+.actions button, .message .anticon {
   color: #666;
 }
 .actions button:hover {
   color: #000;
   background-color: rgba(172, 172, 172, 0.2);
+}
+tbody tr {
+  cursor: pointer;
+}
+tbody tr td:last-of-type {
+  text-align: right;
+  padding-right: 24px;
 }
 
 .logo {
@@ -59,4 +77,64 @@ code {
 }
 .search-input input {
   background-color: #eee;
+}
+
+.message-header button {
+  color: #666;
+}
+.message-header .ant-page-header-heading-extra > * {
+  margin-left: 0
+}
+.message-header .sub-header {
+  justify-content: space-between;
+  align-items: center;
+}
+.message-header .sub-header .ant-space {
+  margin-left: 10px;
+}
+.message-header button svg {
+  width: 20px;
+  /* height: 20px; */
+  vertical-align: text-top;
+  fill: #666;
+  overflow: hidden;
+  /* margin-right: 4px; */
+}
+.message-header .ant-page-header-content {
+  padding-top: 4px;
+}
+.message-header .ant-divider-horizontal {
+  margin-bottom: 0;
+}
+.message-body {
+  padding: 0 24px 24px;
+  background: #fff;
+}
+.message-body.no-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  padding-top: 40px;
+}
+.message-body div {
+  white-space: pre-wrap;
+  margin-bottom: 20px;
+}
+.message-body button {
+  color: #5f6368;
+  border-radius: 4px;
+}
+.message-body button:hover {
+  background-color: rgba(32,33,36,0.059);
+  color: inherit;
+  border-color: #d9d9d9;
+}
+.msg-btn-icon button svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  fill: #666;
+  overflow: hidden;
+  margin-right: 4px;
 }
