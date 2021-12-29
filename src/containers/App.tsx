@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Layout } from 'antd'
+import PageLoader from '../components/PageLoader'
 import AppHeader from '../components/AppHeader'
 import FolderMenu from '../components/FolderMenu'
 import EmailList from '../components/EmailList'
@@ -47,7 +48,7 @@ function App(): React.ReactElement {
   }, [])
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <PageLoader />
   }
 
   return (

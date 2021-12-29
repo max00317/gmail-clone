@@ -12,11 +12,13 @@ import type * as type from '../types/Message'
 const EmailList: React.FC<any> = ({ setMessageId }) => {
   // const handleAction: React.MouseEventHandler<HTMLButtonElement> = (e) => {}
   const handleAction = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
     rec: type.IMessage | type.IFolderMessage,
     action: string
   ): void => {
-    console.log(`rec`, rec)
-    console.log(action, rec.key)
+    // console.log(`rec`, rec)
+    e.stopPropagation()
+    console.log(`${action}: ${rec.key} - ${rec.subject}`)
   }
 
   const columns = [
@@ -41,7 +43,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
               type="text"
               shape="circle"
               icon={<ContainerFilled />}
-              onClick={() => handleAction(record, 'Archive')}
+              onClick={(e) => handleAction(e, record, 'Archive')}
             />
           </Tooltip>
 
@@ -50,7 +52,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
               type="text"
               shape="circle"
               icon={<DeleteFilled />}
-              onClick={() => handleAction(record, 'Delete')}
+              onClick={(e) => handleAction(e, record, 'Delete')}
             />
           </Tooltip>
 
@@ -59,7 +61,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
               type="text"
               shape="circle"
               icon={<MailFilled />}
-              onClick={() => handleAction(record, 'Mark as unread')}
+              onClick={(e) => handleAction(e, record, 'Mark as unread')}
             />
           </Tooltip>
 
@@ -68,7 +70,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
               type="text"
               shape="circle"
               icon={<ClockCircleFilled />}
-              onClick={() => handleAction(record, 'Snooze')}
+              onClick={(e) => handleAction(e, record, 'Snooze')}
             />
           </Tooltip>
         </Space>
@@ -137,7 +139,9 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
       pagination={false}
       onRow={(record) => ({
         onClick: () => {
-          console.log(`message-id:`, record['message-id'])
+          console.log(
+            `Email click: ${record['message-id']} - ${record.subject}`
+          )
           setMessageId(record['message-id'])
         },
       })}

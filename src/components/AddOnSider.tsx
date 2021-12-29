@@ -31,13 +31,13 @@ const AddOnSider = () => {
             onClick={() => handleAction('Calendar click')}
           />
         </Tooltip>
-        <Tooltip title="Keep Notes">
+        <Tooltip title="Keep">
           <Button
             type="primary"
             shape="circle"
             icon={<BulbOutlined />}
             size="small"
-            onClick={() => handleAction('Keep Notes click')}
+            onClick={() => handleAction('Keep click')}
           />
         </Tooltip>
         <Tooltip title="Tasks">
