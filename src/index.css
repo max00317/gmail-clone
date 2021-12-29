@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* overflow-y: hidden; */
 }
 
 code {
@@ -12,11 +13,46 @@ code {
     monospace;
 }
 
-#root {
+#root > section {
   border-bottom: 1px solid #f0f0f0;
   /* border-bottom: 1px solid red; */
 }
 
+.app-btn-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
+
+.compose-btn {
+  margin: 16px 0 16px 10px;
+  font-weight: 500;
+  height: 48px;
+  width: 135px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+  background-color: #fff;
+  transition: box-shadow .08s linear,min-width .15s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  /* border-color: rgb(60,64,67); */
+  border: none;
+  outline-width: 0;
+}
+.compose-btn.collapsed {
+  width: 52px;
+}
+.compose-btn:hover {
+  box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
+  background-color: #fafafb;
+}
+
+.compose-btn img {
+  margin-left: -6px;
+  margin-right: 10px;
+}
 .ant-menu-inline {
   height: 100%;
 }
@@ -38,6 +74,9 @@ code {
   font-size: 20px;
   padding: 0 24px;
   line-height: 64px;
+}
+.settings {
+  padding: 0 18px;
 }
 
 .trigger:hover, .settings:hover {
@@ -68,6 +107,8 @@ tbody tr td:last-of-type {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .search-input {
@@ -92,14 +133,13 @@ tbody tr td:last-of-type {
 .message-header .sub-header .ant-space {
   margin-left: 10px;
 }
-.message-header button svg {
+.message-header button svg, .search-btn svg {
   width: 20px;
-  /* height: 20px; */
   vertical-align: text-top;
   fill: #666;
   overflow: hidden;
-  /* margin-right: 4px; */
 }
+
 .message-header .ant-page-header-content {
   padding-top: 4px;
 }
@@ -116,6 +156,8 @@ tbody tr td:last-of-type {
   align-items: center;
   font-weight: 500;
   padding-top: 40px;
+  min-height: 140px;
+  padding-bottom: 100px;
 }
 .message-body div {
   white-space: pre-wrap;
@@ -137,4 +179,14 @@ tbody tr td:last-of-type {
   fill: #666;
   overflow: hidden;
   margin-right: 4px;
+}
+.settings-sider {
+  border-left: 1px solid #f0f0f0;
+}
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  align-items: center;
+  
 }

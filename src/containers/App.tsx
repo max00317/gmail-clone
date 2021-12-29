@@ -1,34 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Menu, Input } from 'antd'
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  InboxOutlined,
-  DeleteOutlined,
-  UserOutlined,
-  MailOutlined,
-  UnorderedListOutlined,
-  SendOutlined,
-  ExclamationCircleOutlined,
-  FormOutlined,
-  SearchOutlined,
-  SettingOutlined,
-} from '@ant-design/icons'
+import { Layout } from 'antd'
+import AppHeader from '../components/AppHeader'
+import FolderMenu from '../components/FolderMenu'
 import EmailList from '../components/EmailList'
 import Message from '../components/Message'
+import Settings from '../components/Settings'
+import AddOnSider from '../components/AddOnSider'
 
 import { fetch } from '../utils/api'
+// import { folderIcons } from '../utils/iconUtils'
 // import { _getFolders } from '../utils/_DATA'
 
-const { Header, Footer, Sider, Content } = Layout
+const { Content } = Layout
 
 function App(): React.ReactElement {
   const [loading, setLoading] = useState(true)
   const [folders, setFolders] = useState<Array<string>>([])
   const [collapsed, setCollapsed] = useState(false)
   const [settings, setSettings] = useState(true)
-  // const [folderData, fetchFolderData] = useFolders()
   const [messageId, setMessageId] = useState<string | null>(null)
+  // const [folderData, fetchFolderData] = useFolders()
 
   const fetchData = async () => {
     // ES6 then/catch
@@ -51,104 +42,33 @@ function App(): React.ReactElement {
     }
   }
 
-  const handleToggle = () => {
-    setCollapsed(!collapsed)
-  }
-  const handleSettings = () => {
-    setSettings(!settings)
-  }
-
-  // const folderIcons = [<InboxOutlined />, <UserOutlined />]
-  const folderIcons: Record<string, React.ReactNode> = {
-    Inbox: <InboxOutlined />,
-    Trash: <DeleteOutlined />,
-    'Work Emails': <MailOutlined />,
-    'Mailing Lists': <UnorderedListOutlined />,
-    Sent: <SendOutlined />,
-    Spam: <ExclamationCircleOutlined />,
-    Drafts: <FormOutlined />,
-    Personal: <UserOutlined />,
-  }
-
   useEffect(() => {
     fetchData()
-
-    // async function gF() {
-    //   const response = await _getFolders()
-    //   console.log(`response`, response)
-    //   console.log(`_getFolders()`, await _getFolders())
-    // }
-    // gF()
   }, [])
 
-  const Logo: React.FC = () => {
-    return (
-      <div className="logo">
-        <img src="images/logo.jpg" alt="logo" />
-      </div>
-    )
-  }
-
   if (loading) {
-    return <h1>Loading</h1>
+    return <h1>Loading...</h1>
   }
 
   return (
     <Layout>
-      <Header className="site-layout-background" style={{ padding: 0 }}>
-        {React.createElement(
-          collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-          {
-            className: 'trigger',
-            onClick: handleToggle,
-          }
-        )}
-        <Logo />
-        <Input
-          size="large"
-          placeholder="Search mail"
-          prefix={<SearchOutlined />}
-          className="search-input"
-        />
-        <SettingOutlined className="settings" onClick={handleSettings} />
-      </Header>
+      <AppHeader
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        settings={settings}
+        setSettings={setSettings}
+      />
       <Layout>
-        <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
-          <Menu
-            // theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['Inbox']}
-          >
-            {folders.map((folder) => {
-              return (
-                <Menu.Item
-                  key={folder}
-                  icon={folderIcons[folder]}
-                  className="folders"
-                >
-                  {folder}
-                </Menu.Item>
-              )
-            })}
-          </Menu>
-        </Sider>
+        <FolderMenu collapsed={collapsed} folders={folders} />
         <Layout>
           <Content>
             <EmailList setMessageId={setMessageId} />
             <Message messageId={messageId} />
           </Content>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={settings}
-            theme="light"
-            collapsedWidth={0}
-          >
-            These are settings
-          </Sider>
+          <Settings settings={settings} />
         </Layout>
+        <AddOnSider />
       </Layout>
-      {/* <Footer>Footer</Footer> */}
     </Layout>
   )
 }
