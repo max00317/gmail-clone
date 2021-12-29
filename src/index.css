@@ -183,10 +183,15 @@ tbody tr td:last-of-type {
 .settings-sider {
   border-left: 1px solid #f0f0f0;
 }
+.folder-sider {
+  border-right: 1px solid #f0f0f0;
+}
+.ant-menu-inline { 
+  border: inherit;
+}
 .settings-container {
   display: flex;
   flex-direction: column;
   margin: 16px;
   align-items: center;
-  
 }
