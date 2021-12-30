@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bc113800-c08a-4288-9df8-6640070c5352/deploy-status)](https://app.netlify.com/sites/gmail-clone-redux/deploys)
+
+**Live Demo:** [https://gmail-clone-redux.netlify.app](https://gmail-clone-redux.netlify.app/)
+
 # GMail Clone (React/Redux)
 
 This is a mock-up of the GMail frontend. It was given as a coding exercise under a limited amount of time. The assignment was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
