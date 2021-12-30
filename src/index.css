@@ -5,9 +5,193 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* overflow-y: hidden; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root > section {
+  border-bottom: 1px solid #f0f0f0;
+  /* border-bottom: 1px solid red; */
+}
+
+.app-btn-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
+
+.compose-btn {
+  margin: 16px 0 16px 10px;
+  font-weight: 500;
+  height: 48px;
+  width: 135px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+  background-color: #fff;
+  transition: box-shadow .08s linear,min-width .15s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  /* border-color: rgb(60,64,67); */
+  border: none;
+  outline-width: 0;
+}
+.compose-btn.collapsed {
+  width: 52px;
+}
+.compose-btn:hover {
+  box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
+  background-color: #fafafb;
+}
+
+.compose-btn img {
+  margin-left: -6px;
+  margin-right: 10px;
+}
+.ant-menu-inline {
+  height: 100%;
+}
+.folders {
+  font-weight:500;
+}
+.folders > .anticon {
+  font-size: 16px;
+}
+
+.trigger {
+  margin-top: 10px;
+}
+.trigger, .settings, .actions {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.trigger, .settings {
+  font-size: 20px;
+  padding: 0 24px;
+  line-height: 64px;
+}
+.settings {
+  padding: 0 18px;
+}
+
+.trigger:hover, .settings:hover {
+  color: #1890ff;
+}
+
+.actions button, .message .anticon {
+  color: #666;
+}
+.actions button:hover {
+  color: #000;
+  background-color: rgba(172, 172, 172, 0.2);
+}
+tbody tr {
+  cursor: pointer;
+}
+tbody tr td:last-of-type {
+  text-align: right;
+  padding-right: 24px;
+}
+
+.logo {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout-background {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.search-input {
+  border-radius: 5px;
+  background-color: #eee;
+  margin: 0 0 0 11px
+}
+.search-input input {
+  background-color: #eee;
+}
+
+.message-header button {
+  color: #666;
+}
+.message-header .ant-page-header-heading-extra > * {
+  margin-left: 0
+}
+.message-header .sub-header {
+  justify-content: space-between;
+  align-items: center;
+}
+.message-header .sub-header .ant-space {
+  margin-left: 10px;
+}
+.message-header button svg, .search-btn svg {
+  width: 20px;
+  vertical-align: text-top;
+  fill: #666;
+  overflow: hidden;
+}
+
+.message-header .ant-page-header-content {
+  padding-top: 4px;
+}
+.message-header .ant-divider-horizontal {
+  margin-bottom: 0;
+}
+.message-body {
+  padding: 0 24px 24px;
+  background: #fff;
+}
+.message-body.no-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  padding-top: 40px;
+  min-height: 140px;
+  padding-bottom: 100px;
+}
+.message-body div {
+  white-space: pre-wrap;
+  margin-bottom: 20px;
+}
+.message-body button {
+  color: #5f6368;
+  border-radius: 4px;
+}
+.message-body button:hover {
+  background-color: rgba(32,33,36,0.059);
+  color: inherit;
+  border-color: #d9d9d9;
+}
+.msg-btn-icon button svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  fill: #666;
+  overflow: hidden;
+  margin-right: 4px;
+}
+.settings-sider {
+  border-left: 1px solid #f0f0f0;
+}
+.folder-sider {
+  border-right: 1px solid #f0f0f0;
+}
+.ant-menu-inline { 
+  border: inherit;
+}
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  align-items: center;
 }

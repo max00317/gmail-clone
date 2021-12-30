@@ -2,6 +2,7 @@
   "env": {
     "browser": true,
     "es2021": true
+    // "jasmine/globals": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -23,12 +24,13 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
+    "no-console": ["off"],
+    // "@typescript-eslint/explicit-function-return-type": [
+    //   "error",
+    //   {
+    //     "allowExpressions": true
+    //   }
+    // ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -38,14 +40,15 @@
       }
     ],
     "import/prefer-default-export": "off",
-    "max-len": [
-      "warn",
-      {
-        "code": 80
-      }
-    ],
+    // "max-len": [
+    //   "warn",
+    //   {
+    //     "code": 80
+    //   }
+    // ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
+    "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": [

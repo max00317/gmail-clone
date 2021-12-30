@@ -1,46 +1,91 @@
-# Getting Started with Create React App
+# GMail Clone (React/Redux)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a mock-up of the GMail frontend. It was given as a coding exercise under a limited amount of time. The assignment was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
 
-## Available Scripts
+![screenshot](public/images/screenshot1.jpg)
 
-In the project directory, you can run:
+The project has the following features:
 
-### `yarn start`
+- Mock up fetch and API endpoints using Promises and async/await.
+- Use of Typescript and Create-React-App for build environment.
+- Use of Ant Design component library.
+- Use of Redux for global state management.
+- Use of Redux Thunk for Async API calls.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Clone the repository.
 
-### `yarn test`
+```bs
+git clone https://github.com/james-priest/gmail-clone.git
+cd gmail-clone
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use yarn or npm to install dependencies.
 
-### `yarn build`
+```sh
+yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# or
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `yarn eject`
+### Development mode
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Starts a dev server.
+- Bundles but does not optimize or minify.
+- Launches website at [http://localhost:3000/](http://localhost:3000/).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+yarn start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# or
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+npm run start
+```
 
-## Learn More
+### Production mode
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Will build once (No watch mode or hot module replacement).
+- Minifies html, js, css, and optimizes image resources.
+- Outputs to `build/`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+yarn build
+
+# or
+
+npm run build
+```
+
+In order to view the production version a local http server needs to be used to launch `dist/index.html` .
+
+Here are two links showing how to spin up a local http server.
+
+- [Simple HTTP Server](http://jasonwatmore.com/post/2016/06/22/nodejs-setup-simple-http-server-local-web-server) - Runs on Node.js.
+- [How to run things locally](https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally) - Instructions for Node.js, Python, & Ruby.
+
+Alternatively, a Visual Studio Code extension can be used to run the site from within the VSCode dev environment.
+
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - Launch a development local Server with live reload feature for static & dynamic pages.
+
+## Development Process
+
+I divided my time into 3 phases:
+
+1. Research
+   - Evaluate frameworks and component libraries for best fit.
+   - Decide which features to include in the UI.
+   - Determine which state management option to use (e.g. component state, context, redux, etc.).
+2. Planning
+   - Mockup the page view.
+   - Split view up into hierarchy of components.
+   - Determine application events.
+   - Determine what data should live in the store.
+3. Coding
+   - Code mock-up of fetch and data access endpoints.
+   - Code UI, components, and component interactions.
+   - Code state management.
