@@ -1,5 +1,9 @@
+// External imports
 import React, { useState, useEffect } from 'react'
 import { Layout } from 'antd'
+import { connect } from 'react-redux'
+
+// Local imports
 import PageLoader from '../components/PageLoader'
 import AppHeader from '../components/AppHeader'
 import FolderMenu from '../components/FolderMenu'
@@ -8,70 +12,70 @@ import Message from '../components/Message'
 import Settings from '../components/Settings'
 import AddOnSider from '../components/AddOnSider'
 
-import { fetch } from '../utils/api'
-// import { folderIcons } from '../utils/iconUtils'
-// import { _getFolders } from '../utils/_DATA'
+import { fetchFolders } from '../actions/foldersActions'
+
+// Types
+import type * as type from '../types/Message'
 
 const { Content } = Layout
 
-function App(): React.ReactElement {
-  const [loading, setLoading] = useState(true)
-  const [folders, setFolders] = useState<Array<string>>([])
+interface AppProps {
+  dispatch: any
+  loading: boolean
+  folders: type.folders
+  hasErrors: boolean
+}
+
+const App = ({
+  dispatch,
+  loading,
+  folders,
+  hasErrors,
+}: AppProps): React.ReactElement => {
   const [collapsed, setCollapsed] = useState(false)
   const [settings, setSettings] = useState(true)
   const [messageId, setMessageId] = useState<string | null>(null)
-  // const [folderData, fetchFolderData] = useFolders()
-
-  const fetchData = async () => {
-    // ES6 then/catch
-    // fetch('/folders')
-    //   .then((res) => res.json())
-    //   .then((json) => setFolders(json))
-    //   .catch((err) => console.log(err))
-    //   .finally(() => setLoading(false))
-
-    // ES7 async/await
-    try {
-      const response = await fetch('/folders')
-      const json = await response.json()
-      // console.log(`json`, json)
-      setFolders(Object.values(json))
-    } catch (err) {
-      console.log(`err`, err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    dispatch(fetchFolders())
+  }, [dispatch])
 
-  if (loading) {
-    return <PageLoader />
+  // show loading, error, or success state
+  const renderPage = () => {
+    if (loading) return <PageLoader />
+    if (hasErrors) return <p>Network error. Unable to display Mail</p>
+    return (
+      <Layout>
+        <AppHeader
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+          settings={settings}
+          setSettings={setSettings}
+        />
+        <Layout>
+          <FolderMenu collapsed={collapsed} />
+          <Layout>
+            <Content>
+              <EmailList setMessageId={setMessageId} />
+              <Message messageId={messageId} />
+            </Content>
+            <Settings settings={settings} />
+          </Layout>
+          <AddOnSider />
+        </Layout>
+      </Layout>
+    )
   }
 
-  return (
-    <Layout>
-      <AppHeader
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-        settings={settings}
-        setSettings={setSettings}
-      />
-      <Layout>
-        <FolderMenu collapsed={collapsed} folders={folders} />
-        <Layout>
-          <Content>
-            <EmailList setMessageId={setMessageId} />
-            <Message messageId={messageId} />
-          </Content>
-          <Settings settings={settings} />
-        </Layout>
-        <AddOnSider />
-      </Layout>
-    </Layout>
-  )
+  return renderPage()
 }
 
-export default App
+const mapStateToProps = (state: type.foldersState) => {
+  return {
+    loading: state.folders.loading,
+    folders: state.folders.folders,
+    hasErrors: state.folders.hasErrors,
+  }
+}
+
+export default connect(mapStateToProps)(App)

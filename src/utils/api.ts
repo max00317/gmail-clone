@@ -1,11 +1,4 @@
-import * as data from './_DATA'
-// import * as users from './users'
-
-// export function getFolders(): Promise<string[]> {
-//   return new Promise((res, rej) => {
-//     setTimeout(() => res({ ...folders }), 1000)
-//   })
-// }
+import * as DATA from './_DATA'
 
 interface fetchResponse {
   ok: boolean
@@ -18,76 +11,48 @@ export const fetch = async (
   // config?: Record<string, string | number>
 ): Promise<fetchResponse> => {
   switch (url) {
-    // case '/login': {
-    //   const user = await users.login(JSON.parse(config.body))
-    //   return {
-    //     ok: true,
-    //     status: 200,
-    //     json: async () => ({user}),
-    //   }
-    // }
     case '/folders': {
-      // const folder = await users.login(JSON.parse(config.body))
-      // const foldersObj = await _getFolders()
-      // console.log(`foldersObj`, foldersObj)
-      // console.log(`Object.values(foldersObj)`, Object.values(foldersObj))
       return {
         ok: true,
         status: 200,
-        // json: async () => folders,
-        json: data._getFolders,
+        json: DATA._getFolders,
       }
-      // return new Promise((res, rej) => {
-      //   setTimeout(
-      //     () =>
-      //       res({
-      //         ok: true,
-      //         status: 200,
-      //         json: async () => folders,
-      //       }),
-      //     500
-      //   )
-      // })
-      return new Promise((res, rej) => {
-        setTimeout(
-          () =>
-            res({
-              ok: true,
-              status: 200,
-              json: async () => data.folders,
-              // json: async () => Object.values(_getFolders()),
-            }),
-          3000
-        )
-      })
     }
-
-    // case '/checkout': {
-    //   const isAuthorized = user.authorize(config.headers.Authorization)
-    //   if (!isAuthorized) {
-    //     return Promise.reject({
-    //       ok: false,
-    //       status: 401,
-    //       json: async () => ({ message: 'Not authorized' }),
-    //     })
-    //   }
-    //   const shoppingCart = JSON.parse(config.body)
-    //   // do whatever other things you need to do with this shopping cart
-    //   return {
-    //     ok: true,
-    //     status: 200,
-    //     json: async () => ({ success: true }),
-    //   }
-    // }
+    case '/folders/Inbox': {
+      return {
+        ok: true,
+        status: 200,
+        json: DATA._getInbox,
+      }
+    }
+    case '/folders/Trash': {
+      return {
+        ok: true,
+        status: 200,
+        json: DATA._getTrash,
+      }
+    }
     default: {
       throw new Error(`Unhandled request: ${url}`)
     }
   }
 }
 
-export const useFolders = async () => {
-  const result = await fetch('/folders')
-  const folders1 = await result.json()
-  return folders1
-  console.log(`folders:`, folders1)
-}
+// export const useFolders = async () => {
+//   const result = await fetch('/folders')
+//   const folders1 = await result.json()
+//   return folders1
+//   console.log(`folders:`, folders1)
+// }
+
+// export function getInitialData() {
+//   return Promise.all([
+//     DATA._getFolders(),
+//     DATA._getMessages(),
+//     DATA._getFolderMessages(),
+//   ]).then(([folders, messages, folderMessages]) => ({
+//     folders,
+//     messages,
+//     folderMessages,
+//   }))
+// }

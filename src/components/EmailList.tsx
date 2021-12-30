@@ -1,24 +1,48 @@
-import React from 'react'
-import { Table, Button, Tooltip, Space } from 'antd'
-import {
-  ContainerFilled,
-  DeleteFilled,
-  MailFilled,
-  ClockCircleFilled,
-} from '@ant-design/icons'
+import React, { useEffect, useState } from 'react'
+import { Table } from 'antd'
+import { connect } from 'react-redux'
+
+import PageLoader from './PageLoader'
+import EmptyArea from './EmptyArea'
+import ActionButtons from './ActionButtons'
+
+import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
 import type * as type from '../types/Message'
 
-const EmailList: React.FC<any> = ({ setMessageId }) => {
+interface EmailListProps {
+  dispatch: any
+  loading: boolean
+  folderMessages: type.FolderMessage[]
+  hasErrors: boolean
+  setMessageId: any
+}
+
+const EmailList: React.FC<EmailListProps> = ({
+  dispatch,
+  loading,
+  folderMessages,
+  hasErrors,
+  setMessageId,
+}) => {
   // const handleAction: React.MouseEventHandler<HTMLButtonElement> = (e) => {}
+
+  // const [folder, setFolder] = useState<string>('Inbox')
+
   const handleAction = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    rec: type.IMessage | type.IFolderMessage,
+    rec: type.Message | type.FolderMessage,
     action: string
   ): void => {
-    // console.log(`rec`, rec)
     e.stopPropagation()
     console.log(`${action}: ${rec.key} - ${rec.subject}`)
+    if (action === 'Delete') {
+      console.log(`
+// Simple DELETE request with fetch
+fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
+    .then(() => this.setState({ status: 'Delete successful' }));
+      `)
+    }
   }
 
   const columns = [
@@ -36,84 +60,15 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
     {
       title: 'Action',
       key: 'action',
-      render: (record: type.IMessage) => (
-        <Space size={0} className="actions">
-          <Tooltip title="Archive">
-            <Button
-              type="text"
-              shape="circle"
-              icon={<ContainerFilled />}
-              onClick={(e) => handleAction(e, record, 'Archive')}
-            />
-          </Tooltip>
-
-          <Tooltip title="Delete">
-            <Button
-              type="text"
-              shape="circle"
-              icon={<DeleteFilled />}
-              onClick={(e) => handleAction(e, record, 'Delete')}
-            />
-          </Tooltip>
-
-          <Tooltip title="Mark as unread">
-            <Button
-              type="text"
-              shape="circle"
-              icon={<MailFilled />}
-              onClick={(e) => handleAction(e, record, 'Mark as unread')}
-            />
-          </Tooltip>
-
-          <Tooltip title="Snooze">
-            <Button
-              type="text"
-              shape="circle"
-              icon={<ClockCircleFilled />}
-              onClick={(e) => handleAction(e, record, 'Snooze')}
-            />
-          </Tooltip>
-        </Space>
+      render: (record: type.Message) => (
+        <ActionButtons record={record} handleAction={handleAction} />
       ),
-    },
-  ]
-
-  const data = [
-    // {
-    //   key: '1',
-    //   name: 'John Brown',
-    //   age: 32,
-    //   address: 'New York No. 1 Lake Park',
-    //   tags: ['nice', 'developer'],
-    // },
-    {
-      key: '123abc',
-      'message-id': '123abc',
-      from: 'Jane Doe',
-      subject: 'Re: Postgres Meetup Thursday',
-    },
-    {
-      key: '456def',
-      'message-id': '456def',
-      from: 'Richard Roe',
-      subject: 'Lunch Next Week',
-    },
-    {
-      key: '789aaa',
-      'message-id': '789aaa',
-      from: 'Alan Turing',
-      subject: 'Emacs Release Update',
-    },
-    {
-      key: '098ddd',
-      'message-id': '098ddd',
-      from: 'Grace Hopper',
-      subject: 'New Compiler Version Available',
     },
   ]
 
   interface DataType {
     key: React.Key
+    'message-id': string
     from: string
     subject: string
   }
@@ -132,25 +87,52 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
     }),
   }
 
-  return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      pagination={false}
-      onRow={(record) => ({
-        onClick: () => {
-          console.log(
-            `Email click: ${record['message-id']} - ${record.subject}`
-          )
-          setMessageId(record['message-id'])
-        },
-      })}
-      rowSelection={{
-        type: 'checkbox',
-        ...rowSelection,
-      }}
-    />
-  )
+  useEffect(() => {
+    dispatch(fetchFolderMessages('Inbox'))
+  }, [dispatch])
+
+  const renderPage = () => {
+    if (loading) return <PageLoader />
+    if (hasErrors)
+      return (
+        <EmptyArea
+          message="No messages in this folder."
+          className="email-list-space"
+        />
+      )
+    return (
+      <Table
+        columns={columns}
+        dataSource={Object.values(folderMessages)}
+        pagination={false}
+        onRow={(record) => ({
+          onClick: () => {
+            console.log(
+              `Email click: ${record['message-id']} - ${record.subject}`
+            )
+            setMessageId(record['message-id'])
+          },
+        })}
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection,
+        }}
+        className="email-list-table"
+      />
+    )
+  }
+
+  renderPage()
+
+  return <>{renderPage()}</>
 }
 
-export default EmailList
+const mapStateToProps = (state: type.folderMessagesState) => {
+  return {
+    loading: state.folderMessages.loading,
+    folderMessages: state.folderMessages.folderMessages,
+    hasErrors: state.folderMessages.hasErrors,
+  }
+}
+
+export default connect(mapStateToProps)(EmailList)
