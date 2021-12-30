@@ -12,7 +12,6 @@ import Message from '../components/Message'
 import Settings from '../components/Settings'
 import AddOnSider from '../components/AddOnSider'
 
-// import { handleInitialData } from '../actions/shared'
 import { fetchFolders } from '../actions/foldersActions'
 
 // Types
@@ -46,31 +45,29 @@ const App = ({
     if (loading) return <PageLoader />
     if (hasErrors) return <p>Network error. Unable to display Mail</p>
     return (
-      <>
-        <FolderMenu collapsed={collapsed} folders={Object.values(folders)} />
+      <Layout>
+        <AppHeader
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+          settings={settings}
+          setSettings={setSettings}
+        />
         <Layout>
-          <Content>
-            <EmailList setMessageId={setMessageId} />
-            <Message messageId={messageId} />
-          </Content>
-          <Settings settings={settings} />
+          <FolderMenu collapsed={collapsed} />
+          <Layout>
+            <Content>
+              <EmailList setMessageId={setMessageId} />
+              <Message messageId={messageId} />
+            </Content>
+            <Settings settings={settings} />
+          </Layout>
+          <AddOnSider />
         </Layout>
-        <AddOnSider />
-      </>
+      </Layout>
     )
   }
 
-  return (
-    <Layout>
-      <AppHeader
-        collapsed={collapsed}
-        setCollapsed={setCollapsed}
-        settings={settings}
-        setSettings={setSettings}
-      />
-      <Layout>{renderPage()}</Layout>
-    </Layout>
-  )
+  return renderPage()
 }
 
 const mapStateToProps = (state: type.foldersState) => {
@@ -81,5 +78,4 @@ const mapStateToProps = (state: type.foldersState) => {
   }
 }
 
-// export default connect(mapStateToProps, { handleInitialData })(App)
 export default connect(mapStateToProps)(App)

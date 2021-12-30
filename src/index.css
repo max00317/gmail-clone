@@ -6,6 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* overflow-y: hidden; */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 code {
@@ -89,6 +95,11 @@ code {
 .actions button:hover {
   color: #000;
   background-color: rgba(172, 172, 172, 0.2);
+}
+.email-list-space, .email-list-table {
+  min-height: 315px;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
 }
 tbody tr {
   cursor: pointer;

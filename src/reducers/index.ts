@@ -2,12 +2,12 @@ import { combineReducers } from 'redux'
 // import { combineReducers } from '@reduxjs/toolkit'
 import foldersReducer from './foldersReducer'
 import messages from './messages'
-import folderMessages from './folderMessages'
+import folderMessagesReducer from './folderMessagesReducer'
 
 const rootReducer = combineReducers({
   folders: foldersReducer,
+  folderMessages: folderMessagesReducer,
   messages,
-  folderMessages,
 })
 
 export default rootReducer

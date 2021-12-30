@@ -8,6 +8,7 @@ const Section = styled('div')`
   align-items: center;
   justify-content: center;
   font-size: 16px;
+  background-color: #fff;
 `
 const Title = styled('h1')`
   margin: 2em 0 0;
@@ -17,7 +18,7 @@ const Subhead = styled('div')`
 `
 
 const Credit = styled('h3')`
-  margin: 2em 0;
+  margin: 2.5em 0;
 `
 
 const PageLoader = () => {

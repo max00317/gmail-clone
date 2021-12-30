@@ -57,36 +57,42 @@ const messages = {
   },
 }
 
-const inbox = [
+const Inbox = [
   {
+    key: '123abc',
     'message-id': '123abc',
     from: 'Jane Doe',
     subject: 'Re: Postgres Meetup Thursday',
   },
   {
+    key: '456def',
     'message-id': '456def',
     from: 'Richard Roe',
     subject: 'Lunch Next Week',
   },
   {
+    key: '789aaa',
     'message-id': '789aaa',
     from: 'Alan Turing',
     subject: 'Emacs Release Update',
   },
   {
+    key: '098ddd',
     'message-id': '098ddd',
     from: 'Grace Hopper',
     subject: 'New Compiler Version Available',
   },
 ]
 
-const trash = [
+const Trash = [
   {
+    key: '999999',
     'message-id': '999999',
     from: 'Acme Corp',
     subject: 'Package delivered Thursday',
   },
   {
+    key: '88888888',
     'message-id': '88888888',
     from: 'Richard Roe',
     subject: 'Re: Project looks good',
@@ -94,8 +100,8 @@ const trash = [
 ]
 
 const folderMessages = {
-  inbox,
-  trash,
+  Inbox,
+  Trash,
 }
 
 const contacts = [
@@ -165,19 +171,19 @@ const filters = [
 
 export const _getFolders = (): Promise<string[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folders }), 1000)
+    setTimeout(() => res({ ...folders }), 3000)
   })
 }
 
 export const _getInbox = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...inbox }), 1000)
+    setTimeout(() => res({ ...Inbox }), 100)
   })
 }
 
 export const _getTrash = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...trash }), 1000)
+    setTimeout(() => res({ ...Trash }), 100)
   })
 }
 
@@ -191,6 +197,6 @@ export const _getFolderMessages = (): Promise<
 
 export const _getMessages = (): Promise<Record<string, type.Message>> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...messages }), 1000)
+    setTimeout(() => res({ messages }), 1000)
   })
 }

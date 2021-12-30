@@ -18,14 +18,14 @@ export const fetch = async (
         json: DATA._getFolders,
       }
     }
-    case '/folders/inbox': {
+    case '/folders/Inbox': {
       return {
         ok: true,
         status: 200,
         json: DATA._getInbox,
       }
     }
-    case '/folders/trash': {
+    case '/folders/Trash': {
       return {
         ok: true,
         status: 200,

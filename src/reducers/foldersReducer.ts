@@ -13,11 +13,6 @@ export default function foldersReducer(
   action: type.Action
 ) {
   switch (action.type) {
-    // case actions.RECEIVE_FOLDERS:
-    //   return {
-    //     ...state,
-    //     ...action.payload,
-    //   }
     case actions.GET_FOLDERS:
       return { ...state, loading: true }
     case actions.GET_FOLDERS_SUCCESS:
