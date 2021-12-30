@@ -1,4 +1,6 @@
-export const folders = [
+import type * as type from '../types/Message'
+
+const folders = [
   'Inbox',
   'Trash',
   'Work Emails',
@@ -91,6 +93,11 @@ const trash = [
   },
 ]
 
+const folderMessages = {
+  inbox,
+  trash,
+}
+
 const contacts = [
   {
     name: 'Grace Hopper',
@@ -149,14 +156,41 @@ const filters = [
     target: 'Personal',
   },
 ]
-export const _getFolders = (): Promise<string[]> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folders }), 1000)
-  })
-}
 
 // export function _getFolders(): Promise<string[]> {
 //   return new Promise((res, rej) => {
 //     setTimeout(() => res({ ...folders }), 1000)
 //   })
 // }
+
+export const _getFolders = (): Promise<string[]> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({ ...folders }), 1000)
+  })
+}
+
+export const _getInbox = (): Promise<type.FolderMessage[]> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({ ...inbox }), 1000)
+  })
+}
+
+export const _getTrash = (): Promise<type.FolderMessage[]> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({ ...trash }), 1000)
+  })
+}
+
+export const _getFolderMessages = (): Promise<
+  Record<string, type.FolderMessage[]>
+> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({ ...folderMessages }), 1000)
+  })
+}
+
+export const _getMessages = (): Promise<Record<string, type.Message>> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({ ...messages }), 1000)
+  })
+}

@@ -13,7 +13,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
   // const handleAction: React.MouseEventHandler<HTMLButtonElement> = (e) => {}
   const handleAction = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    rec: type.IMessage | type.IFolderMessage,
+    rec: type.Message | type.FolderMessage,
     action: string
   ): void => {
     // console.log(`rec`, rec)
@@ -36,7 +36,7 @@ const EmailList: React.FC<any> = ({ setMessageId }) => {
     {
       title: 'Action',
       key: 'action',
-      render: (record: type.IMessage) => (
+      render: (record: type.Message) => (
         <Space size={0} className="actions">
           <Tooltip title="Archive">
             <Button
