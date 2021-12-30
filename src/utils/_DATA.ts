@@ -151,7 +151,7 @@ const filters = [
 ]
 export const _getFolders = (): Promise<string[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folders }), 1000)
+    setTimeout(() => res({ ...folders }), 3000)
   })
 }
 
