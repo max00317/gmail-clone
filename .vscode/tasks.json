@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // {
+        //     "type": "typescript",
+        //     "tsconfig": "tsconfig.json",
+        //     "option": "watch",
+        //     "problemMatcher": ["$tsc-watch"],
+        //     "group": "build",
+        //     "label": "tsc: watch - tsconfig.json"
+        // },
+        // {
+        //     "label": "NPM Scan for TS Errors",
+        //     // "detail": "Get all typescript errors in problems pane",
+        //     "script": "scan-ts-errors",
+        //     "type": "npm",
+        //     "isBackground": true,
+        //     "problemMatcher": "$tsc-watch",
+        //     "presentation": {
+        //         "reveal": "silent"
+        //     }
+        // },
+        {
+            "label": "Monitor TS Errors",
+            "command": "./node_modules/.bin/tsc",
+            "type": "shell",
+            "args": ["--watch"],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared"
+            },
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch"
+            // "runOptions": {
+            //     "runOn": "folderOpen"
+            // }
+        }
+    ]
+}
+// {
+//     "version": "2.0.0",
+//     "tasks": [
+//         {
+//             "label": "tsc",
+//             "type": "shell",
+//             "command": "./node_modules/typescript/bin/tsc",
+//             "args": ["--noEmit", "--watch"],
+//             "problemMatcher": ["$tsc-watch"],
+//             "isBackground": true
+//         }
+//     ]
+// }
