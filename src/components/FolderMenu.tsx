@@ -7,18 +7,18 @@ import { connect } from 'react-redux'
 import PageLoader from './PageLoader'
 import { folderIcons } from '../utils/iconUtils'
 
-import { fetchFolders } from '../actions/foldersActions'
+// import { fetchFolders } from '../actions/foldersActions'
 import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
 // Types
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 const { Sider } = Layout
 
 interface FolderMenuProps {
   dispatch: any
   loading: boolean
-  folders: type.folders
+  folders: type.Folders
   hasErrors: boolean
   collapsed: boolean
 }

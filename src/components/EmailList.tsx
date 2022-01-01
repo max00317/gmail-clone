@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Table } from 'antd'
 import { connect } from 'react-redux'
 
@@ -8,7 +8,7 @@ import ActionButtons from './ActionButtons'
 
 import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 interface EmailListProps {
   dispatch: any
@@ -25,26 +25,6 @@ const EmailList: React.FC<EmailListProps> = ({
   hasErrors,
   setMessageId,
 }) => {
-  // const handleAction: React.MouseEventHandler<HTMLButtonElement> = (e) => {}
-
-  // const [folder, setFolder] = useState<string>('Inbox')
-
-  const handleAction = (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    rec: type.Message | type.FolderMessage,
-    action: string
-  ): void => {
-    e.stopPropagation()
-    console.log(`${action}: ${rec.key} - ${rec.subject}`)
-    if (action === 'Delete') {
-      console.log(`
-// Simple DELETE request with fetch
-fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
-    .then(() => this.setState({ status: 'Delete successful' }));
-      `)
-    }
-  }
-
   const columns = [
     {
       title: 'Name',
@@ -60,28 +40,24 @@ fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
     {
       title: 'Action',
       key: 'action',
-      render: (record: type.Message) => (
-        <ActionButtons record={record} handleAction={handleAction} />
-      ),
+      render: (record: type.FolderMessage) => <ActionButtons record={record} />,
     },
   ]
 
-  interface DataType {
-    key: React.Key
-    'message-id': string
-    from: string
-    subject: string
-  }
   // rowSelection object indicates the need for row selection
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+    onChange: (
+      selectedRowKeys: React.Key[],
+      selectedRows: type.FolderMessage[]
+    ) => {
+      console.log(`selectedRows`, selectedRows)
       console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         'selectedRows: ',
         selectedRows
       )
     },
-    getCheckboxProps: (record: DataType) => ({
+    getCheckboxProps: (record: type.FolderMessage) => ({
       disabled: record.from === 'Disabled User', // Column configuration not to be checked
       name: record.from,
     }),
@@ -107,6 +83,7 @@ fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
         pagination={false}
         onRow={(record) => ({
           onClick: () => {
+            console.log(`record row`, record)
             console.log(
               `Email click: ${record['message-id']} - ${record.subject}`
             )

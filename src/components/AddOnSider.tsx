@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 
-const { Footer, Sider, Content } = Layout
+const { Sider } = Layout
 
 const AddOnSider = () => {
   const handleAction = (msg: string) => console.log(msg)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Layout, Input, Tooltip, Button } from 'antd'
 import {
   MenuUnfoldOutlined,
@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 import { ReactComponent as SliderIcon } from '../assets/slider.svg'
 
-const { Header, Footer, Sider, Content } = Layout
+const { Header } = Layout
 
 interface HeaderProps {
   collapsed: boolean
