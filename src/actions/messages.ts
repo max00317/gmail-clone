@@ -1,4 +1,4 @@
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
 

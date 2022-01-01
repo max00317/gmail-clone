@@ -1,7 +1,7 @@
 // import { _getFolders } from '../utils/_DATA'
 import { fetch } from '../utils/api'
 
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 // Define action constants
 export const GET_FOLDERS = 'GET_FOLDERS'
@@ -13,7 +13,7 @@ export const getFolders = () => ({
   type: GET_FOLDERS,
 })
 
-export const getFoldersSuccess = (folders: type.folders) => ({
+export const getFoldersSuccess = (folders: type.Folders) => ({
   type: GET_FOLDERS_SUCCESS,
   payload: folders,
 })
@@ -29,7 +29,7 @@ export function fetchFolders() {
 
     try {
       const response = await fetch('/folders')
-      const data: type.folders = await response.json()
+      const data: type.Folders = await response.json()
 
       dispatch(getFoldersSuccess(data))
     } catch (error) {

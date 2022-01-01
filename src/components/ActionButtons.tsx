@@ -7,23 +7,29 @@ import {
   ClockCircleFilled,
 } from '@ant-design/icons'
 
-import type * as type from '../types/Message'
-
-interface HandleAction {
-  (
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    rec: type.Message | type.FolderMessage,
-    action: string
-  ): void
-}
+import type * as type from '../types/GMail'
 
 const ActionButtons = ({
   record,
-  handleAction,
 }: {
-  record: type.Message
-  handleAction: HandleAction
+  record: type.FolderMessage
 }): React.ReactElement => {
+  const handleAction = (
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    rec: type.FolderMessage,
+    action: string
+  ): void => {
+    e.stopPropagation()
+    console.log(`${action}: ${rec.key} - ${rec.subject}`)
+    if (action === 'Delete') {
+      console.log(`
+// Simple DELETE request with fetch
+fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
+    .then(() => this.setState({ status: 'Delete successful' }));
+        `)
+    }
+  }
+
   return (
     <Space size={0} className="actions">
       <Tooltip title="Archive">

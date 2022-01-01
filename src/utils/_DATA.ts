@@ -1,4 +1,4 @@
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 const folders = [
   'Inbox',
@@ -104,64 +104,64 @@ const folderMessages = {
   Trash,
 }
 
-const contacts = [
-  {
-    name: 'Grace Hopper',
-    email: 'grace.hopper@example.com',
-    icon: 'https://example.com/~grace/photo.gif',
-  },
-  {
-    name: 'Richard Roe',
-    email: 'richard.roe@example.com',
-    icon: 'https://example.com/users/roe.jpg',
-  },
-  {
-    name: 'Jane Doe',
-    email: 'jane.doe@example.com',
-    icon: 'https://example.com/doe.jpg',
-  },
-  {
-    name: 'Montgomery Burns',
-    email: 'burns@example.com',
-  },
-  {
-    name: 'Alan Turing',
-    email: 'alan@example.com',
-  },
-]
+// const contacts = [
+//   {
+//     name: 'Grace Hopper',
+//     email: 'grace.hopper@example.com',
+//     icon: 'https://example.com/~grace/photo.gif',
+//   },
+//   {
+//     name: 'Richard Roe',
+//     email: 'richard.roe@example.com',
+//     icon: 'https://example.com/users/roe.jpg',
+//   },
+//   {
+//     name: 'Jane Doe',
+//     email: 'jane.doe@example.com',
+//     icon: 'https://example.com/doe.jpg',
+//   },
+//   {
+//     name: 'Montgomery Burns',
+//     email: 'burns@example.com',
+//   },
+//   {
+//     name: 'Alan Turing',
+//     email: 'alan@example.com',
+//   },
+// ]
 
-const settings = {
-  signature: '--------\nCoding Test User\nFrontend Engineer, Wallaroo',
-  'vacation-autorespond': false,
-  density: 'compact',
-  'inbox-type': 'priority-inbox',
-  'messages-per-page': 50,
-  'reply-mode': 'reply-all',
-  spellcheck: false,
-  autocorrect: false,
-  'desktop-notifications': false,
-}
+// const settings = {
+//   signature: '--------\nCoding Test User\nFrontend Engineer, Wallaroo',
+//   'vacation-autorespond': false,
+//   density: 'compact',
+//   'inbox-type': 'priority-inbox',
+//   'messages-per-page': 50,
+//   'reply-mode': 'reply-all',
+//   spellcheck: false,
+//   autocorrect: false,
+//   'desktop-notifications': false,
+// }
 
-const filters = [
-  {
-    'match-field': 'subject',
-    'match-text': 'lotto',
-    action: 'move',
-    target: 'spam',
-  },
-  {
-    'match-field': 'subject',
-    'match-text': 'package',
-    action: 'move',
-    target: 'Personal',
-  },
-  {
-    'match-field': 'from',
-    'match-text': 'Joe',
-    action: 'move',
-    target: 'Personal',
-  },
-]
+// const filters = [
+//   {
+//     'match-field': 'subject',
+//     'match-text': 'lotto',
+//     action: 'move',
+//     target: 'spam',
+//   },
+//   {
+//     'match-field': 'subject',
+//     'match-text': 'package',
+//     action: 'move',
+//     target: 'Personal',
+//   },
+//   {
+//     'match-field': 'from',
+//     'match-text': 'Joe',
+//     action: 'move',
+//     target: 'Personal',
+//   },
+// ]
 
 // export function _getFolders(): Promise<string[]> {
 //   return new Promise((res, rej) => {
@@ -169,34 +169,53 @@ const filters = [
 //   })
 // }
 
+function random1to10(): number {
+  return Math.floor(Math.random() * 10) + 1
+}
+
 export const _getFolders = (): Promise<string[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folders }), 3000)
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
+      return res({ ...folders })
+    }, 3000)
   })
 }
 
 export const _getInbox = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...Inbox }), 100)
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
+      return res({ ...Inbox })
+    }, 100)
   })
 }
 
 export const _getTrash = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...Trash }), 100)
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
+      return res({ ...Trash })
+    }, 100)
   })
 }
 
-export const _getFolderMessages = (): Promise<
-  Record<string, type.FolderMessage[]>
-> => {
+// export const _getFolderMessages = (): Promise<Record<string, type.FolderMessage[]>
+export const _getFolderMessages = (): Promise<type.FolderMessageKey> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...folderMessages }), 1000)
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
+      return res({ ...folderMessages })
+    }, 1000)
   })
 }
 
-export const _getMessages = (): Promise<Record<string, type.Message>> => {
+// export const _getMessages = (): Promise<Record<string, type.Message>> => {
+export const _getMessages = (): Promise<type.MessageKey> => {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ messages }), 1000)
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
+      return res({ ...messages })
+    }, 1000)
   })
 }

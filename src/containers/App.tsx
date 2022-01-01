@@ -12,17 +12,18 @@ import Message from '../components/Message'
 import Settings from '../components/Settings'
 import AddOnSider from '../components/AddOnSider'
 
+// State
 import { fetchFolders } from '../actions/foldersActions'
 
 // Types
-import type * as type from '../types/Message'
+import type * as type from '../types/GMail'
 
 const { Content } = Layout
 
 interface AppProps {
   dispatch: any
   loading: boolean
-  folders: type.folders
+  folders: type.Folders
   hasErrors: boolean
 }
 
