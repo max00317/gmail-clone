@@ -24,7 +24,7 @@ const Credit = styled('h3')`
 const PageLoader = () => {
   return (
     <Section>
-      <Title>GMail Clone</Title>
+      <Title>Gmail Clone</Title>
       <Subhead>
         In <em>slightly</em> more than 3 hours...
       </Subhead>

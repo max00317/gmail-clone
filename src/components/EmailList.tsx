@@ -8,7 +8,7 @@ import ActionButtons from './ActionButtons'
 
 import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 interface EmailListProps {
   dispatch: any

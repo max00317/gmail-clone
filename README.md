@@ -2,9 +2,9 @@
 
 **Live Demo:** [https://gmail-clone-redux.netlify.app](https://gmail-clone-redux.netlify.app/)
 
-# GMail Clone (React/Redux)
+# Gmail Clone (React/Redux)
 
-This is a mock-up of the GMail frontend. It was given as a coding exercise under a limited amount of time. The assignment was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
+This is a mock-up of the Gmail frontend. It was given as a coding exercise under a limited amount of time. The assignment was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
 
 ![screenshot](public/images/screenshot1.jpg)
 

@@ -7,7 +7,7 @@ import {
   ClockCircleFilled,
 } from '@ant-design/icons'
 
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 const ActionButtons = ({
   record,

@@ -1,7 +1,7 @@
 // import { _getFolders } from '../utils/_DATA'
 import { fetch } from '../utils/api'
 
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 // Define action constants
 export const GET_FOLDERS = 'GET_FOLDERS'
