@@ -45,10 +45,21 @@ const App = ({
     setTimeout(() => {
       notification.info({
         message: `Gmail Clone`,
-        description:
-          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        description: (
+          <>
+            This mock-up was built over the course of a week. It uses:
+            <ul>
+              <li>React</li>
+              <li>Redux for state management</li>
+              <li>Ant Design as the UI Library</li>
+            </ul>
+            It was built as a Proof of Concept so many of the UI features have
+            not been wired up.
+          </>
+        ),
+        duration: 10,
       })
-    }, 5000)
+    }, 4000)
   }, [])
 
   // show loading, error, or success state
