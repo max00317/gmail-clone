@@ -1,6 +1,6 @@
 import { fetch } from '../utils/api'
 
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 export const GET_FOLDER_MESSAGES = 'GET_FOLDER_MESSAGES'
 export const GET_FOLDER_MESSAGES_SUCCESS = 'GET_FOLDER_MESSAGES_SUCCESS'

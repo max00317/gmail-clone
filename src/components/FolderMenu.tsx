@@ -11,7 +11,7 @@ import { folderIcons } from '../utils/iconUtils'
 import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
 // Types
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 const { Sider } = Layout
 

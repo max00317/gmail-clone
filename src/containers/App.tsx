@@ -1,6 +1,6 @@
 // External imports
 import React, { useState, useEffect } from 'react'
-import { Layout } from 'antd'
+import { Layout, notification } from 'antd'
 import { connect } from 'react-redux'
 
 // Local imports
@@ -16,7 +16,7 @@ import AddOnSider from '../components/AddOnSider'
 import { fetchFolders } from '../actions/foldersActions'
 
 // Types
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 const { Content } = Layout
 
@@ -40,6 +40,16 @@ const App = ({
   useEffect(() => {
     dispatch(fetchFolders())
   }, [dispatch])
+
+  useEffect(() => {
+    setTimeout(() => {
+      notification.info({
+        message: `Gmail Clone`,
+        description:
+          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      })
+    }, 5000)
+  }, [])
 
   // show loading, error, or success state
   const renderPage = () => {

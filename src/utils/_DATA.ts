@@ -1,4 +1,4 @@
-import type * as type from '../types/GMail'
+import type * as type from '../types/Gmail'
 
 const folders = [
   'Inbox',
