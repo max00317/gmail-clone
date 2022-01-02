@@ -11,6 +11,7 @@ import EmailList from '../components/EmailList'
 import Message from '../components/Message'
 import Settings from '../components/Settings'
 import AddOnSider from '../components/AddOnSider'
+import Notification from '../components/Notification'
 
 // State
 import { fetchFolders } from '../actions/foldersActions'
@@ -45,21 +46,10 @@ const App = ({
     setTimeout(() => {
       notification.info({
         message: `Gmail Clone`,
-        description: (
-          <>
-            This mock-up was built over the course of a week. It uses:
-            <ul>
-              <li>React</li>
-              <li>Redux for state management</li>
-              <li>Ant Design as the UI Library</li>
-            </ul>
-            It was built as a Proof of Concept so many of the UI features have
-            not been wired up.
-          </>
-        ),
-        duration: 10,
+        description: <Notification />,
+        duration: 12,
       })
-    }, 4000)
+    }, 3600)
   }, [])
 
   // show loading, error, or success state
