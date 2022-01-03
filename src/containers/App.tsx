@@ -47,7 +47,7 @@ const App = ({
       notification.info({
         message: `Gmail Clone`,
         description: <Notification />,
-        duration: 12,
+        duration: 10,
       })
     }, 3600)
   }, [])
@@ -67,7 +67,7 @@ const App = ({
         <Layout>
           <FolderMenu collapsed={collapsed} />
           <Layout>
-            <Content>
+            <Content className="content-area">
               <EmailList setMessageId={setMessageId} />
               <Message messageId={messageId} />
             </Content>

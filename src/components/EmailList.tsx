@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { Table } from 'antd'
+import { Table, Spin } from 'antd'
 import { connect } from 'react-redux'
 
-import PageLoader from './PageLoader'
+import SectionSpin from './SectionSpin'
 import EmptyArea from './EmptyArea'
 import ActionButtons from './ActionButtons'
 
@@ -68,16 +68,18 @@ const EmailList: React.FC<EmailListProps> = ({
   }, [dispatch])
 
   const renderPage = () => {
-    if (loading) return <PageLoader />
+    // if (loading) return <Spin className="email-list-section" />
+    if (loading) return <SectionSpin className="email-list-section" />
     if (hasErrors)
       return (
         <EmptyArea
           message="No messages in this folder."
-          className="email-list-space"
+          className="email-list-section"
         />
       )
     return (
       <Table
+        className="email-list-section"
         columns={columns}
         dataSource={Object.values(folderMessages)}
         pagination={false}
@@ -94,7 +96,6 @@ const EmailList: React.FC<EmailListProps> = ({
           type: 'checkbox',
           ...rowSelection,
         }}
-        className="email-list-table"
       />
     )
   }

@@ -28,7 +28,7 @@ const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
   }
 
   return (
-    <Layout>
+    <Layout className="message-section">
       <PageHeader
         className="message-header"
         ghost={false}
