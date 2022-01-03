@@ -54,7 +54,7 @@ const requestOptions = {
         - Marcus Aurelius'
     })
 };
-fetch('https://reqres.in/api/posts', requestOptions)
+fetch('https://gmail.com/messages/new', requestOptions)
     .then(response => response.json())
     .then(data => setResponse({ postId: data.id }));
             `)
