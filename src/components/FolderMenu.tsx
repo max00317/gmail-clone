@@ -1,10 +1,10 @@
 // External imports
-import React, { useEffect } from 'react'
-import { Layout, Menu, Button } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Layout, Menu, Button, Modal } from 'antd'
 import { connect } from 'react-redux'
 
 // Local imports
-import PageLoader from './PageLoader'
+import SectionSpin from './SectionSpin'
 import { folderIcons } from '../utils/iconUtils'
 
 // import { fetchFolders } from '../actions/foldersActions'
@@ -37,8 +37,14 @@ const FolderMenu: React.FC<FolderMenuProps> = ({
   // }, [dispatch])
   // const collapsed = false
 
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const showModal = () => setIsModalVisible(true)
+  const handleOk = () => setIsModalVisible(false)
+  const handleCancel = () => setIsModalVisible(false)
+
   const renderMenu = () => {
-    if (loading) return <PageLoader />
+    if (loading) return <SectionSpin className="folder-menu" />
     if (hasErrors) return <p>Network error. Unable to display Mail</p>
     return (
       <div className="folder-menu">
@@ -92,6 +98,7 @@ fetch('https://reqres.in/api/posts', requestOptions)
     .then(response => response.json())
     .then(data => this.setState({ postId: data.id }));
             `)
+            // showModal()
           }}
         >
           <img src="images/create_32dp.png" alt="Compose message" />
@@ -99,6 +106,29 @@ fetch('https://reqres.in/api/posts', requestOptions)
         </Button>
       </div>
       {renderMenu()}
+      <Modal
+        title="New Message"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={400}
+        mask={false}
+        maskClosable={false}
+        wrapClassName="compose-wrapper"
+        className="compose-modal"
+        transitionName=""
+        maskTransitionName=""
+        getContainer={false}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
     </Sider>
   )
 }

@@ -187,7 +187,7 @@ export const _getInbox = (): Promise<type.FolderMessage[]> => {
     setTimeout(() => {
       if (random1to10() < 1) return rej(console.error('Mock Network Error'))
       return res({ ...Inbox })
-    }, 100)
+    }, 300)
   })
 }
 
@@ -196,7 +196,7 @@ export const _getTrash = (): Promise<type.FolderMessage[]> => {
     setTimeout(() => {
       if (random1to10() < 1) return rej(console.error('Mock Network Error'))
       return res({ ...Trash })
-    }, 100)
+    }, 300)
   })
 }
 
