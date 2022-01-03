@@ -56,7 +56,7 @@ const requestOptions = {
 };
 fetch('https://gmail.com/messages/new', requestOptions)
     .then(response => response.json())
-    .then(data => setResponse({ postId: data.id }));
+    .then(data => setResponse({ 'message-id': data.id }));
             `)
             setTimeout(() => {
               handleOk()

@@ -24,8 +24,8 @@ const ActionButtons = ({
     if (action === 'Delete') {
       console.log(`
 // Simple DELETE request with fetch
-fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' })
-    .then(() => this.setState({ status: 'Delete successful' }));
+fetch('https://gmail.com/messages/${rec.key}', { method: 'DELETE' })
+    .then(() => setResponse({ status: 'Delete successful' }));
         `)
     }
   }
