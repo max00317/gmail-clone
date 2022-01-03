@@ -31,7 +31,7 @@ interface AppProps {
 const App = ({
   dispatch,
   loading,
-  folders,
+  // folders,
   hasErrors,
 }: AppProps): React.ReactElement => {
   const [collapsed, setCollapsed] = useState(false)

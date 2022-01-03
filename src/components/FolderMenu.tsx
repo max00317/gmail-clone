@@ -1,9 +1,10 @@
 // External imports
-import React, { useState, useEffect } from 'react'
-import { Layout, Menu, Button, Modal } from 'antd'
+import React, { useState } from 'react'
+import { Layout, Menu, Button } from 'antd'
 import { connect } from 'react-redux'
 
 // Local imports
+import ComposeModal from './ComposeModal'
 import SectionSpin from './SectionSpin'
 import { folderIcons } from '../utils/iconUtils'
 
@@ -87,18 +88,7 @@ const FolderMenu: React.FC<FolderMenuProps> = ({
           className={collapsed ? 'compose-btn collapsed' : 'compose-btn'}
           onClick={() => {
             console.log('Compose new message')
-            console.log(`
-// Simple POST request with a JSON body using fetch
-const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: 'POST Email Message' })
-};
-fetch('https://reqres.in/api/posts', requestOptions)
-    .then(response => response.json())
-    .then(data => this.setState({ postId: data.id }));
-            `)
-            // showModal()
+            showModal()
           }}
         >
           <img src="images/create_32dp.png" alt="Compose message" />
@@ -106,29 +96,12 @@ fetch('https://reqres.in/api/posts', requestOptions)
         </Button>
       </div>
       {renderMenu()}
-      <Modal
-        title="New Message"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width={400}
-        mask={false}
-        maskClosable={false}
-        wrapClassName="compose-wrapper"
-        className="compose-modal"
-        transitionName=""
-        maskTransitionName=""
-        getContainer={false}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+      <ComposeModal
+        isModalVisible={isModalVisible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        loading={loading}
+      />
     </Sider>
   )
 }
