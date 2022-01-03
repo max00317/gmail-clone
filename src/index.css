@@ -252,7 +252,7 @@ tbody tr td:last-of-type {
 .compose-wrapper {
   top:inherit;
   left: inherit;
-  right: 46px;
+  right: 50px;
   /* height: 400px; */
 }
 .compose-modal {
@@ -266,9 +266,15 @@ tbody tr td:last-of-type {
 }
 .compose-modal .ant-modal-content {
   border-radius: 8px 8px 0 0;
+  font-size: 0.875rem;
 }
 .compose-modal .ant-modal-close-x {
-  padding: 0
+  padding: 0;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  color: #aaa;
+  font-weight: bold;
 }
 .compose-modal .ant-modal-header {
   padding: 10px 0 10px 16px;
@@ -284,7 +290,44 @@ tbody tr td:last-of-type {
   height: 250px;
   flex: 1 0 0%;
   overflow-y: auto;
+  padding: 0 16px;
+  line-height: 1.5;
 }
+.compose-table {
+  width: 100%;
+}
+.compose-table tr {
+  cursor:text;
+}
+.compose-table td {
+  /* text-align: left; */
+  border-bottom: 1px solid #e5e5e5;
+  padding: 8px 0;
+}
+.compose-table td span, .compose-table td p {
+  color: #000;
+}
+.compose-table td span.email-address {
+  -webkit-font-smoothing: auto;
+  font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  padding: 3px 8px;
+  margin-left: 2px;
+  color: #5f6368;
+  letter-spacing: 0.3px;
+}
+.compose-table td:last-of-type {
+  text-align: left;
+  padding-right: 16px;
+}
+.compose-table tr:last-of-type td {
+  border-bottom: none;;
+}
+
+
 /* .compose-modal .ant-modal-body::-webkit-scrollbar {
   width: 10px;
   height: 10px;
