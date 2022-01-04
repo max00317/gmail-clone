@@ -46,7 +46,7 @@ const FolderMenu: React.FC<FolderMenuProps> = ({
 
   const renderMenu = () => {
     if (loading) return <SectionSpin className="folder-menu" />
-    if (hasErrors) return <p>Network error. Unable to display Mail</p>
+    if (hasErrors) return <p>Mock network error. Unable to display mail</p>
     return (
       <div className="folder-menu">
         <Menu

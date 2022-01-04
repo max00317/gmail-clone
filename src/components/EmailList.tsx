@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { Table, Spin } from 'antd'
+import { Table } from 'antd'
 import { connect } from 'react-redux'
 
 import SectionSpin from './SectionSpin'
-import EmptyArea from './EmptyArea'
+// import EmptyArea from './EmptyArea'
 import ActionButtons from './ActionButtons'
 
 import { fetchFolderMessages } from '../actions/folderMessagesActions'
 
 import type * as type from '../types/Gmail'
+import { fetchMessage } from '../actions/messageActions'
 
 interface EmailListProps {
   dispatch: any
@@ -70,13 +71,14 @@ const EmailList: React.FC<EmailListProps> = ({
   const renderPage = () => {
     // if (loading) return <Spin className="email-list-section" />
     if (loading) return <SectionSpin className="email-list-section" />
-    if (hasErrors)
-      return (
-        <EmptyArea
-          message="No messages in this folder."
-          className="email-list-section"
-        />
-      )
+    // if (hasErrors)
+    //   return (
+    //     <EmptyArea
+    //       message="No messages in this folder."
+    //       className="email-list-section"
+    //     />
+    //   )
+    if (hasErrors) return <p>Mock network error. Unable to display mail</p>
     return (
       <Table
         className="email-list-section"
@@ -85,10 +87,10 @@ const EmailList: React.FC<EmailListProps> = ({
         pagination={false}
         onRow={(record) => ({
           onClick: () => {
-            console.log(`record row`, record)
             console.log(
               `Email click: ${record['message-id']} - ${record.subject}`
             )
+            // dispatch(fetchMessage(record['message-id']))
             setMessageId(record['message-id'])
           },
         })}
