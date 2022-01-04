@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout, PageHeader, Tooltip, Button, Row, Divider, Space } from 'antd'
 import {
   PrinterFilled,
@@ -6,16 +6,46 @@ import {
   StarOutlined,
   MoreOutlined,
 } from '@ant-design/icons'
+import { connect } from 'react-redux'
 import { ReactComponent as ReplyIcon } from '../assets/reply.svg'
 import { ReactComponent as ForwardIcon } from '../assets/forward.svg'
 import { ReactComponent as NewWindow } from '../assets/new-window.svg'
 
+import { fetchMessage } from '../actions/messageActions'
+
+import type * as type from '../types/Gmail'
+
 const { Header, Footer, Sider, Content } = Layout
 
-const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
+interface MessageProps {
+  dispatch: any
+  loading: boolean
+  message: type.Message
+  hasErrors: boolean
+  // messageId: Record<string, unknown>
+  messageId?: string
+}
+
+const Message: React.FC<MessageProps> = ({
+  dispatch,
+  loading,
+  message,
+  hasErrors,
+  messageId,
+}) => {
   const handleAction = (action: string): void => {
     console.log(action)
   }
+
+  // useEffect(() => {
+  //   console.log(`messageId`, messageId)
+  // }, [messageId])
+
+  useEffect(() => {
+    if (messageId) {
+      dispatch(fetchMessage(messageId))
+    }
+  }, [dispatch, messageId])
 
   if (!messageId) {
     return (
@@ -32,7 +62,8 @@ const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
       <PageHeader
         className="message-header"
         ghost={false}
-        title="New Compiler Version Available"
+        // title="New Compiler Version Available"
+        title={message?.subject}
         extra={[
           <Tooltip title="Print all" key="1">
             <Button
@@ -54,9 +85,11 @@ const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
         ]}
       >
         <Row className="sub-header">
-          <span>{'Grace Hopper <grace.hopper@example.com>'}</span>
+          {/* <span>{'Grace Hopper <grace.hopper@example.com>'}</span> */}
+          <span>{message?.from}</span>
           <span>
-            Sun, 20 Jun 2021 09:45:30 -0600
+            {/* Sun, 20 Jun 2021 09:45:30 -0600 */}
+            {message?.date}
             <Space size={2}>
               <Tooltip title="Not stared">
                 <Button type="text" shape="circle" icon={<StarOutlined />} />
@@ -74,9 +107,10 @@ const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
       </PageHeader>
       <Content className="message-body">
         <div>
-          {
+          {/* {
             'Version 123 of our compiler is out! Please have a look and let us know any feedback.\n\nGrace'
-          }
+          } */}
+          {message?.body}
         </div>
         <Space className="msg-btn-icon">
           <Button icon={<ReplyIcon />}>Reply</Button>
@@ -87,4 +121,16 @@ const Message: React.FC<Record<string, unknown>> = ({ messageId }) => {
   )
 }
 
-export default Message
+const mapStateToProps = (state: type.messageState) => {
+  return {
+    loading: state.message.loading,
+    message: state.message.message,
+    hasErrors: state.message.hasErrors,
+  }
+}
+
+export default connect(mapStateToProps)(Message)
+
+Message.defaultProps = {
+  messageId: undefined,
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { messages } from '../utils/_DATA'
 
 export type Folders = Record<string, string>
 
@@ -20,10 +21,12 @@ export interface Message extends Omit<FolderMessage, key, 'message-id'> {
   date: string
   body: string
   'reply-to'?: string
+  from: string
+  subject: string
 }
 
 export interface MessageKey {
-  [index: string]: Message
+  [key: keyof typeof messages]: Message
 }
 
 // Redux Props
@@ -39,6 +42,14 @@ export interface folderMessagesState {
   folderMessages: {
     loading: boolean
     folderMessages: folderMessage[]
+    hasErrors: boolean
+  }
+}
+
+export interface messageState {
+  message: {
+    loading: boolean
+    message: Message
     hasErrors: boolean
   }
 }

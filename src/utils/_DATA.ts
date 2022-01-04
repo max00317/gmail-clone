@@ -9,9 +9,9 @@ const folders = [
   'Spam',
   'Drafts',
   'Personal',
-]
+] as const
 
-const messages = {
+export const messages = {
   '098ddd': {
     from: 'Grace Hopper <grace.hopper@example.com>',
     id: '098ddd',
@@ -99,9 +99,15 @@ const Trash = [
   },
 ]
 
-const folderMessages = {
+const folderMessages: type.FolderMessageKey = {
   Inbox,
   Trash,
+  'Work Emails': [] as type.FolderMessage[],
+  'Mailing Lists': [] as type.FolderMessage[],
+  Sent: [] as type.FolderMessage[],
+  Spam: [] as type.FolderMessage[],
+  Drafts: [] as type.FolderMessage[],
+  Personal: [] as type.FolderMessage[],
 }
 
 // const contacts = [
@@ -168,16 +174,18 @@ const folderMessages = {
 //     setTimeout(() => res({ ...folders }), 1000)
 //   })
 // }
+const ERROR_MSG = 'Mock Network Error'
 
 function random1to10(): number {
   return Math.floor(Math.random() * 10) + 1
 }
 
-export const _getFolders = (): Promise<string[]> => {
+export const _getFolders = (): Promise<typeof folders> => {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
-      return res({ ...folders })
+      if (random1to10() < 1) return rej(new Error(ERROR_MSG))
+      // return res({ ...folders })
+      return res(folders)
     }, 3000)
   })
 }
@@ -185,8 +193,9 @@ export const _getFolders = (): Promise<string[]> => {
 export const _getInbox = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
-      return res({ ...Inbox })
+      if (random1to10() < 1) return rej(new Error(ERROR_MSG))
+      // return res({ ...Inbox })
+      return res(Inbox)
     }, 300)
   })
 }
@@ -194,28 +203,70 @@ export const _getInbox = (): Promise<type.FolderMessage[]> => {
 export const _getTrash = (): Promise<type.FolderMessage[]> => {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
-      return res({ ...Trash })
+      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+      // return res({ ...Trash })
+      return res(Trash)
+    }, 300)
+  })
+}
+
+export const _getEmptyFolder = (): Promise<Record<string, never>> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+      return res({})
+    }, 300)
+  })
+}
+
+export const _098ddd = (): Promise<type.Message> => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+      return res(messages['098ddd'])
+    }, 300)
+  })
+}
+
+export function _getFolderMessages(
+  folder: typeof folders[number]
+): Promise<type.FolderMessage[]> {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+      // return res(folderMessages[folder])
+      return res(folderMessages[folder])
+    }, 300)
+  })
+}
+
+export function _getMessage(
+  messageId: keyof typeof messages
+): Promise<type.Message> {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+      return res(messages[messageId])
     }, 300)
   })
 }
 
 // export const _getFolderMessages = (): Promise<Record<string, type.FolderMessage[]>
-export const _getFolderMessages = (): Promise<type.FolderMessageKey> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
-      return res({ ...folderMessages })
-    }, 1000)
-  })
-}
+// export const _getFolderMessages = (): Promise<type.FolderMessageKey> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+//       return res({ ...folderMessages })
+//     }, 1000)
+//   })
+// }
 
-// export const _getMessages = (): Promise<Record<string, type.Message>> => {
-export const _getMessages = (): Promise<type.MessageKey> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error('Mock Network Error'))
-      return res({ ...messages })
-    }, 1000)
-  })
-}
+// // export const _getMessages = (): Promise<Record<string, type.Message>> => {
+// export const _getMessages = (): Promise<type.MessageKey> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+//       return res({ ...messages })
+//     }, 1000)
+//   })
+// }

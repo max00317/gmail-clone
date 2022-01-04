@@ -1,5 +1,5 @@
 // import { _getFolders } from '../utils/_DATA'
-import { fetch } from '../utils/api'
+import { _fetch } from '../utils/api'
 
 import type * as type from '../types/Gmail'
 
@@ -28,12 +28,12 @@ export function fetchFolders() {
     dispatch(getFolders())
 
     try {
-      const response = await fetch('/folders')
+      const response = await _fetch('/folders')
       const data: type.Folders = await response.json()
 
       dispatch(getFoldersSuccess(data))
     } catch (error) {
-      console.log(`error`, error)
+      console.error(error)
       dispatch(getFoldersFailure())
     }
   }

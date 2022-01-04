@@ -6,40 +6,49 @@ interface fetchResponse {
   json: any
 }
 
-export const fetch = async (
+export const _fetch = async (
   url: string
   // config?: Record<string, string | number>
 ): Promise<fetchResponse> => {
-  switch (url) {
-    case '/folders': {
-      return {
-        ok: true,
-        status: 200,
-        json: DATA._getFolders,
-      }
-    }
-    case '/folders/Inbox': {
-      return {
-        ok: true,
-        status: 200,
-        json: DATA._getInbox,
-      }
-    }
-    case '/folders/Trash': {
-      return {
-        ok: true,
-        status: 200,
-        json: DATA._getTrash,
-      }
-    }
-    default: {
-      throw new Error(`Unhandled request: ${url}`)
-    }
+  const ok = true
+  const status = 200
+  let json
+
+  if (url === '/folders') {
+    json = DATA._getFolders
+  } else if (url.includes('/folders/')) {
+    // const match = url.match(/^\/folders\/(?<folder>\w+)$/)
+    // switch (match?.groups?.folder) {
+    //   case 'Inbox':
+    //     json = DATA._getInbox
+    //     break
+    //   case 'Trash':
+    //     json = DATA._getTrash
+    //     break
+    //   default: {
+    //     status = 204
+    //     json = DATA._getEmptyFolder
+    //   }
+    // }
+    json = DATA._getFolderMessages
+  } else if (url.includes('/messages/')) {
+    // const match = url.match(/^\/messages\/(?<messageId>\w+)$/)
+    // console.log(`match?.groups?.messageId`, match?.groups?.messageId)
+    // console.log('in _fetch now')
+    json = DATA._getMessage
+  } else {
+    throw new Error(`Unhandled request: ${url}`)
+  }
+
+  return {
+    ok,
+    status,
+    json,
   }
 }
 
 // export const useFolders = async () => {
-//   const result = await fetch('/folders')
+//   const result = await _fetch('/folders')
 //   const folders1 = await result.json()
 //   return folders1
 //   console.log(`folders:`, folders1)

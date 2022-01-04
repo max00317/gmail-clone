@@ -36,7 +36,7 @@ const App = ({
 }: AppProps): React.ReactElement => {
   const [collapsed, setCollapsed] = useState(false)
   const [settings, setSettings] = useState(true)
-  const [messageId, setMessageId] = useState<string | null>(null)
+  const [messageId, setMessageId] = useState<string>()
 
   useEffect(() => {
     dispatch(fetchFolders())
@@ -55,7 +55,7 @@ const App = ({
   // show loading, error, or success state
   const renderPage = () => {
     if (loading) return <PageLoader />
-    if (hasErrors) return <p>Network error. Unable to display Mail</p>
+    if (hasErrors) return <p>Mock network error. Unable to display mail</p>
     return (
       <Layout>
         <AppHeader
