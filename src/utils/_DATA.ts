@@ -190,43 +190,43 @@ export const _getFolders = (): Promise<typeof folders> => {
   })
 }
 
-export const _getInbox = (): Promise<type.FolderMessage[]> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(new Error(ERROR_MSG))
-      // return res({ ...Inbox })
-      return res(Inbox)
-    }, 300)
-  })
-}
+// export const _getInbox = (): Promise<type.FolderMessage[]> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(new Error(ERROR_MSG))
+//       // return res({ ...Inbox })
+//       return res(Inbox)
+//     }, 300)
+//   })
+// }
 
-export const _getTrash = (): Promise<type.FolderMessage[]> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
-      // return res({ ...Trash })
-      return res(Trash)
-    }, 300)
-  })
-}
+// export const _getTrash = (): Promise<type.FolderMessage[]> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+//       // return res({ ...Trash })
+//       return res(Trash)
+//     }, 300)
+//   })
+// }
 
-export const _getEmptyFolder = (): Promise<Record<string, never>> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
-      return res({})
-    }, 300)
-  })
-}
+// export const _getEmptyFolder = (): Promise<Record<string, never>> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+//       return res({})
+//     }, 300)
+//   })
+// }
 
-export const _098ddd = (): Promise<type.Message> => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      if (random1to10() < 1) return rej(console.error(ERROR_MSG))
-      return res(messages['098ddd'])
-    }, 300)
-  })
-}
+// export const _098ddd = (): Promise<type.Message> => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (random1to10() < 1) return rej(console.error(ERROR_MSG))
+//       return res(messages['098ddd'])
+//     }, 300)
+//   })
+// }
 
 export function _getFolderMessages(
   folder: typeof folders[number]

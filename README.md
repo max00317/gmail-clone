@@ -4,9 +4,9 @@
 
 # Gmail Clone (React/Redux)
 
-This is a mock-up of the Gmail frontend. It was given as a coding exercise under a limited amount of time. The assignment was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
+This is a mock-up of the Gmail frontend. It was given as a coding exercise under a limited amount of time. The [assignment](public/docs/Technical-Interview-Frontend.pdf) was to create a frontend from scratch and populate it with data from a supplied set of JSON files.
 
-![screenshot](public/images/screenshot1.jpg)
+![screenshot-2](public/images/screenshot2.jpg)
 
 The project has the following features:
 
